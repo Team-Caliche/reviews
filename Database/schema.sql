@@ -16,21 +16,21 @@ CREATE TABLE IF NOT EXISTS reviews(
 );
 
 CREATE TABLE IF NOT EXISTS reviews_photos(
-  id INT NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
   reviewPhoto_id INT NOT NULL,
   url VARCHAR(1000) NOT NULL,
   FOREIGN KEY (id) REFERENCES reviews(id)
 );
 
 CREATE TABLE IF NOT EXISTS characteristics(
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY NOT NULL,
   product_id INT NOT NULL,
   char_name text NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS characteristics_reviews(
-  id INT NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
   char_id INT NOT NULL,
   char_reviewID INT NOT NULL,
   value_reviews INT NOT NULL,
@@ -38,3 +38,17 @@ CREATE TABLE IF NOT EXISTS characteristics_reviews(
   FOREIGN KEY (char_id) REFERENCES characteristics(id)
 );
 
+
+
+
+
+
+
+SELECT MAX(id) FROM reviews_photos
+CREATE SEQUENCE reviews_photos_seq MINVALUE 1
+ALTER TABLE reviews_photos ALTER id SET DEFAULT nextval('reviews_photos_seq')
+ALTER SEQUENCE reviews_photos_seq OWNED BY reviews_photos.id;
+
+
+\COPY characteristics FROM '/Users/franciscoveranicola/Downloads/characteristics.csv' CSV HEADER DELIMITER ',';
+\COPY characteristics_reviews FROM '/Users/franciscoveranicola/Downloads/characteristic_reviews.csv' CSV HEADER DELIMITER ',';

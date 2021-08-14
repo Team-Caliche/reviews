@@ -45,12 +45,41 @@ app.post('/api/reviews', (req, res) => {
 
 })
 
-
 //put (update reviews)
-
+app.put('/api/reviews/:review_id/helpful', (req, res) => {
+  const review = req.body;
+  if (!review) {
+    res.status(404).end();
+  }
+  pool.updateReview(review, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(400).end();
+    } else {
+      console.log('Successfully updated DB');
+      res.status(202).send('success');
+    }
+  });
+});
 
 
 //delete review
+app.delete('api/review/:review_id/report', (req, res) => {
+  const review = req.query.id;
+  if (!review) {
+    res.status(404).end();
+  }
+  pool.deleteReview(review, (err) => {
+    if (err) {
+      console.log(err);
+      res.status(400).end();
+    } else {
+      console.log('Successfully reported to DB');
+      res.status(203).send('success');
+    }
+  });
+});
+
 
 
 //app listen
