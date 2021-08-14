@@ -28,11 +28,9 @@ const getReview = (id, cb) => {
 
 //insert Review
 const insertReview = (review, cb) => {
+  // console.log(review.product_id, review.rating, review.date, review.rev_summary, review.body, review.recommended, review.reported, review.reviwer_name, review.reviwer_email, review.review_response, review.helpful)
 
-  // console.log('review body', review)
-  const queryString = `INSERT INTO reviews(product_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful) VALUES(${review.product_id}, ${review.rating}, ${review.date}, E${review.summary}, E${review.body}, ${review.recommended}, ${review.reported}, E${review.reviwer_name}, E${review.reviw_email}, E${review.review_response}, ${review.helpful})`;
-
-  // console.log('query string', queryString)
+  const queryString = `INSERT INTO reviews(product_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful) VALUES(${review.product_id}, ${review.rating}, current_timestamp, '${review.rev_summary}', '${review.body}', ${review.recommended}, ${review.reported}, '${review.reviwer_name}', '${review.reviwer_email}', '${review.review_response}', ${review.helpful})`;
 
   pool.query(queryString, (err, result) => {
     if (err) {
@@ -42,6 +40,16 @@ const insertReview = (review, cb) => {
       cb(null, result);
     }
   })
+
+  // if (review.photos.length > 0) {
+  //   var photoQuery = `INSERT INTO reviews_photos(id, reviewphoto_id, url) VALUES(${review.photos}, ${}, ${})`
+  //   pool.query()
+  // }
+
+  // if (review.characteristics.length > 0) {
+  //   pool.query()
+  // }
+
 }
 
 
@@ -88,21 +96,3 @@ const deleteReview = (id, cb) => {
 
 module.exports = { getReview, insertReview, updateReview, deleteReview };
 
-
-
-
-/*
-   var rows = result.rows;
-      rows.forEach(row => {
-        pool.query(`SELECT * FROM reviews_photos WHERE reviewphoto_id = ${row.id}`, (err, data) => {
-          if (err) {
-            console.log('error from photos', err);
-          } else {
-            photoArray.push(data.rows[0]);
-          }
-        })
-      })
-
-
-
-*/

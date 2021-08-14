@@ -38,7 +38,8 @@ app.post('/api/reviews', (req, res) => {
       console.log('There was an error inserting review', err);
       res.status(500).end();
     } else {
-      res.status(200).send(data);
+      console.log('successfully posted review to DB');
+      res.status(201).send('success');
     }
   });
 
