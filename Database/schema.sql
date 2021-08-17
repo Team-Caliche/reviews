@@ -40,15 +40,15 @@ CREATE TABLE IF NOT EXISTS characteristics_reviews(
 
 
 
-
-
-
-
 SELECT MAX(id) FROM reviews_photos
 CREATE SEQUENCE reviews_photos_seq MINVALUE 1
-ALTER TABLE reviews_photos ALTER id SET DEFAULT nextval('reviews_photos_seq')
+ALTER TABLE reviews_photos ALTER id SET DEFAULT nextval('reviews_photos_seq');
 ALTER SEQUENCE reviews_photos_seq OWNED BY reviews_photos.id;
 
 
 \COPY characteristics FROM '/Users/franciscoveranicola/Downloads/characteristics.csv' CSV HEADER DELIMITER ',';
 \COPY characteristics_reviews FROM '/Users/franciscoveranicola/Downloads/characteristic_reviews.csv' CSV HEADER DELIMITER ',';
+
+
+\x for vertical format in terminal
+
