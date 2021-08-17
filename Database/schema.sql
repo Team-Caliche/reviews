@@ -52,3 +52,12 @@ ALTER SEQUENCE reviews_photos_seq OWNED BY reviews_photos.id;
 
 \x for vertical format in terminal
 
+CREATE INDEX reviwerEmailIndex ON reviews USING btree
+(
+    reviwer_Email
+);
+
+
+SELECT reviews.id AS review_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful, ARRAY_AGG(json_build_object('id', reviews_photos.id, 'url', url)) as photos FROM reviews LEFT JOIN reviews_photos ON reviews_photos.reviewPhoto_id = reviews.id WHERE product_id = 15 AND reported != true
+  GROUP BY reviews.id
+  ORDER BY helpful DESC, date DESC;

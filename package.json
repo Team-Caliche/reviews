@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "nodemon Server/index.js",
-    "test": "jest"
+    "test": "jest -i"
   },
   "repository": {
     "type": "git",

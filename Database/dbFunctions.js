@@ -16,7 +16,7 @@ const getReview = (request, cb) => {
     'result': results
   }
 
-  const getQ = `SELECT reviews.id AS review_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful, ARRAY_AGG(json_build_object('id', reviews_photos.id, 'ur', url)) as photos FROM reviews LEFT JOIN reviews_photos ON reviews_photos.reviewPhoto_id = reviews.id WHERE product_id = ${product} AND reported != true
+  const getQ = `SELECT reviews.id AS review_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful, ARRAY_AGG(json_build_object('id', reviews_photos.id, 'url', url)) as photos FROM reviews LEFT JOIN reviews_photos ON reviews_photos.reviewPhoto_id = reviews.id WHERE product_id = ${product} AND reported != true
   GROUP BY reviews.id
   ORDER BY helpful DESC, date DESC;`
 
@@ -26,8 +26,8 @@ const getReview = (request, cb) => {
       console.log(err);
       cb(err, null);
     } else {
-      // console.log(data)
-      results = data.rows;
+      console.log(data.rows)
+      resultObj['results'] = data.rows;
       cb(null, resultObj);
     }
   })
@@ -87,9 +87,10 @@ const insertReview = (review, cb) => {
 
 /************Update Review to incrememnt Helpful category******************************** */
 const updateReview = (update, cb) => {
+  // console.log(update);
   const queryStr = `UPDATE reviews
    SET helpful = helpful + 1
-   WHERE id = ${update.review_id}
+   WHERE id = ${update}
   `;
 
   pool.query(queryStr, (err, result) => {
@@ -107,7 +108,7 @@ const reportReview = (id, cb) => {
   // console.log(id)
   const queryStr = `UPDATE reviews
   SET reported = true
-  WHERE id=${id.review_id};`
+  WHERE id=${id};`
   pool.query(queryStr, (err, result) => {
     if (err) {
       console.log(err);
@@ -165,3 +166,6 @@ const getMetaData = (product, cb) => {
 /************End of DB Functions ******************************** */
 
 module.exports = { getReview, insertReview, updateReview, reportReview, getMetaData };
+
+
+
