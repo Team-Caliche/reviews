@@ -1,4 +1,5 @@
 const express = require('express');
+const request = require('supertest');
 const app = express();
 const pool = require('../Database/dbFunctions.js');
 const port = 3000;
@@ -40,7 +41,7 @@ app.get('/api/reviews/metadata/:product_id', (req, res) => {
       console.log('There was an error retrieving metadata', err);
       res.status(500).end();
     } else {
-      res.status(200).send(data);
+      res.status(202).send(data);
     }
   });
 
@@ -106,3 +107,6 @@ app.put('/api/reviews/:review_id/:type', (req, res) => {
 app.listen(port, () => {
   console.log('server is listening on port 3000')
 })
+
+
+module.exports = app;
