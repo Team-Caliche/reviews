@@ -57,7 +57,51 @@ CREATE INDEX reviwerEmailIndex ON reviews USING btree
     reviwer_Email
 );
 
+CREATE INDEX productID_index ON reviews USING btree
+(
+    product_id ASC
+);
 
-SELECT reviews.id AS review_id, rating, date, review_summary, review_Body, recommended, reported, reviwer_Name, reviwer_Email, review_Response, helpful, ARRAY_AGG(json_build_object('id', reviews_photos.id, 'url', url)) as photos FROM reviews LEFT JOIN reviews_photos ON reviews_photos.reviewPhoto_id = reviews.id WHERE product_id = 15 AND reported != true
-  GROUP BY reviews.id
-  ORDER BY helpful DESC, date DESC;
+sdcreview=# CREATE INDEX reviewPhotoId_index ON reviews_photos USING btree
+(
+    reviewPhoto_id ASC
+);
+
+sdcreview=# CREATE INDEX charName_index ON characteristics USING btree
+(
+    char_name
+);
+
+sdcreview=# CREATE INDEX charReviewID ON characteristics_reviews USING btree
+(
+    char_reviewID
+);
+
+sdcreview=# CREATE INDEX charID_index ON characteristics_reviews USING btree
+(
+    char_id
+);
+
+sdcreview=# CREATE INDEX review_summary_index ON reviews USING btree
+(
+    review_summary
+);
+
+CREATE INDEX review_bodyIndex ON reviews USING btree
+(
+    review_Body
+);
+
+sdcreview=# CREATE INDEX reviwerNameIndex ON reviews USING btree
+(
+    reviwer_Name
+);
+
+sdcreview=# CREATE INDEX reviwerEmailIndex ON reviews USING btree
+(
+    reviwer_Email
+);
+
+
+
+

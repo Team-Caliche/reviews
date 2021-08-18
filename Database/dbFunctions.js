@@ -26,7 +26,7 @@ const getReview = (request, cb) => {
       console.log(err);
       cb(err, null);
     } else {
-      console.log(data.rows)
+      // console.log(data.rows)
       resultObj['results'] = data.rows;
       cb(null, resultObj);
     }
