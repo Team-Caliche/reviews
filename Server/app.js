@@ -100,7 +100,7 @@ app.put('/api/reviews/:review_id/:type', (req, res) => {
 
 });
 
-app.get('http://18.118.17.130/loaderio-c0341c98129bb5ebfe772fc641c829c7.txt', (req, res) => {
+app.get('/loaderio-c0341c98129bb5ebfe772fc641c829c7.txt', (req, res) => {
   if (err) {
     res.status(400).end()
   } else {
