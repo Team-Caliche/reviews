@@ -101,7 +101,7 @@ app.put('/api/reviews/:review_id/:type', (req, res) => {
 });
 
 app.get('/loaderio-c0341c98129bb5ebfe772fc641c829c7', (req, res) => {
-    res.status(200).send('loaderio-c0341c98129bb5ebfe772fc641c829c7')
+    res.send('loaderio-c0341c98129bb5ebfe772fc641c829c7')
 });
 
 
