@@ -4,7 +4,7 @@ const pool = new Pool({
   user: 'franciscoveranicola',
   password: '',
   database: 'sdcreview',
-  host: 'localhost',
+  host: ' 18.216.158.248',
   port: '5432'
 });
 
