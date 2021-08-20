@@ -1,0 +1,32 @@
+{
+  "name": "reviews",
+  "version": "1.0.0",
+  "description": "Review API section for System Design Capstone",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "jest": "^27.0.6",
+    "pg": "^8.7.1",
+    "supertest": "^6.1.5",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "scripts": {
+    "start": "nodemon Server/index.js",
+    "test": "jest -i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Caliche/reviews.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Caliche/reviews/issues"
+  },
+  "homepage": "https://github.com/Team-Caliche/reviews#readme"
+}

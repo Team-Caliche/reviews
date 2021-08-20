@@ -1,0 +1,3 @@
+node_modules
+postgresql-ec2.pem
+sdc-server-ec2.pem
